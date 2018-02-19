@@ -8,14 +8,27 @@ class Home extends Component {
 
             <View style={styles.containerStyles}>
                 <StatusBar hidden />
+                <View style={styles.playButtonsContainer}>
                 <TouchableOpacity
                     onPress={() => this.props.navigation.navigate('Mode1')}
                     style={styles.ButtonStyles}
                 >
-                    <Button
-                    />
-                
+                <View>
+                    <Text>➕➖➗✖️</Text>
+                </View>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('Mode2')}
+                    style={styles.ButtonStyles}
+                >
+                <View>
+                    <Text>✅❎</Text>
+                </View>
+                </TouchableOpacity>
+                </View>
+                <Button
+                    title='Leaderboard'
+                />
             </View>
         );
     }
@@ -25,7 +38,7 @@ class Home extends Component {
 const styles = {
     containerStyles: {
         flex: 3,
-        backgroundColor: '#E0E3CC'
+        backgroundColor: '#E0E3CC',
     },
     ButtonStyles: {
         alignItems: 'center',
@@ -35,10 +48,15 @@ const styles = {
         borderColor: 'rgba(0,0,0,0.2)',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 150,
-        height: 150,
+        width: 120,
+        height: 120,
         backgroundColor: '#fff',
         borderRadius: 100,
+    },
+
+    playButtonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
     }
 }
 
