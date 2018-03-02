@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import { Button } from 'react-native-elements'
@@ -42,7 +41,7 @@ export default class Mode2 extends Component {
 }
 
 
-export default Mode2;
+
 
 const styles = {
     containerStyle: {
