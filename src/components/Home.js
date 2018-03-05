@@ -10,7 +10,8 @@ class Home extends Component {
                 <StatusBar hidden />
                 <View style={styles.playButtonsContainer}>
                 <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('Mode2')}
+
+onPress={() => this.props.navigation.navigate('Mode2')}
                     style={styles.ButtonStyles}
                 >
                 <View>
