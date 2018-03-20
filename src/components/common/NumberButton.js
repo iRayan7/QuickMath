@@ -12,13 +12,15 @@ const NumberButton = (props) => {
         }} onPress={onPress}>
             <View style={{
 
-                width: 30,
-                height: 30,
-                borderRadius: 15,
-                backgroundColor: '#fff',
-                position: 'absolute'
+                width: 40,
+                height: 40,
+                borderRadius: 20,
+                backgroundColor: '#d6d6d6',
+                position: 'absolute',
+                justifyContent: 'center',
+                alignItems: 'center'
             }}>
-                <Text style={{ alignSelf: 'center', fontSize: 24}}>{number}</Text>
+                <Text style={{  fontSize: 24}}>{number}</Text>
             </View>
         </TouchableOpacity>
 
