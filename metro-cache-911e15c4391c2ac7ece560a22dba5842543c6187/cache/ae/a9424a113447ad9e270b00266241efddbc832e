@@ -1,0 +1,289 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = require(_dependencyMap[0], "react");
+
+  var _react3 = _interopRequireDefault(_react2);
+
+  var _index = require(_dependencyMap[1], "./../react-transform-hmr/lib/index.js");
+
+  var _index2 = _interopRequireDefault(_index);
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _class,
+      _temp2,
+      _jsxFileName = "/Users/alobaili/Projects/QuickMath/node_modules/react-native-leaderboard/index.js";
+
+  var _propTypes = require(_dependencyMap[2], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  var _reactNative = require(_dependencyMap[3], "react-native");
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _components = {
+    Leaderboard: {
+      displayName: "Leaderboard"
+    }
+  };
+
+  var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: "/Users/alobaili/Projects/QuickMath/node_modules/react-native-leaderboard/index.js",
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _reactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  var ds = new _reactNative.ListView.DataSource({
+    rowHasChanged: function rowHasChanged(r1, r2) {
+      return r1 !== r2;
+    }
+  });
+  var oddRowColor = "white";
+  var evenRowColor = "#f2f5f7";
+
+  var Leaderboard = _wrapComponent("Leaderboard")((_temp2 = _class = function (_Component) {
+    _inherits(Leaderboard, _Component);
+
+    function Leaderboard() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
+      _classCallCheck(this, Leaderboard);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Leaderboard.__proto__ || Object.getPrototypeOf(Leaderboard)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+        sortedData: []
+      }, _this._sort = function (data) {
+        var sortBy = _this.props.sortBy;
+        var sorted = [];
+
+        if (_this.props.sort) {
+          return _this.props.sort(data);
+        } else if (typeof data === "object") {
+          var sortedKeys = data && Object.keys(data).sort(function (key1, key2) {
+            return data[key2][sortBy] - data[key1][sortBy];
+          });
+          return sortedKeys && sortedKeys.map(function (key) {
+            return data[key];
+          });
+        } else if (typeof data === "array") {
+          return data && data.sort(function (item1, item2) {
+            return item2[sortBy] - item1[sortBy];
+          });
+        }
+      }, _this._defaultRenderItem = function (item, index) {
+        var sortBy = _this.props.sortBy;
+        var evenColor = _this.props.evenRowColor || evenRowColor;
+        var oddColor = _this.props.oddRowColor || oddRowColor;
+        var rowColor = index % 2 === 0 ? evenColor : oddColor;
+
+        var rowJSx = _react3.default.createElement(
+          _reactNative.View,
+          {
+            style: [styles.row, {
+              backgroundColor: rowColor
+            }],
+            key: index,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 79
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.View,
+            {
+              style: styles.left,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 80
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                style: [styles.rank, _this.props.rankStyle, index < 9 ? styles.singleDidget : styles.doubleDidget],
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 81
+                }
+              },
+              parseInt(index) + 1
+            ),
+            _this.props.icon && _react3.default.createElement(_reactNative.Image, {
+              source: {
+                uri: item[_this.props.icon]
+              },
+              style: [styles.avatar, _this.props.avatarStyle],
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 91
+              }
+            }),
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                style: [styles.label, _this.props.labelStyle],
+                numberOfLines: 1,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 96
+                }
+              },
+              item[_this.props.labelBy]
+            )
+          ),
+          _react3.default.createElement(
+            _reactNative.Text,
+            {
+              style: [styles.score, _this.props.scoreStyle],
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 100
+              }
+            },
+            item[sortBy] || 0
+          )
+        );
+
+        return _this.props.onRowPress ? _react3.default.createElement(
+          _reactNative.TouchableOpacity,
+          {
+            onPress: function onPress(e) {
+              return _this.props.onRowPress(item, index);
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 107
+            }
+          },
+          rowJSx
+        ) : rowJSx;
+      }, _this._renderItem = function (item, index) {
+        return _this.props.renderItem ? _this.props.renderItem(item, index) : _this._defaultRenderItem(item, index);
+      }, _this.componentWillReceiveProps = function (nextProps) {
+        if (_this.props.data !== nextProps.data) {
+          _this.setState({
+            sortedData: _this._sort(nextProps.data)
+          });
+        }
+      }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Leaderboard, [{
+      key: "componentWillMount",
+      value: function componentWillMount() {
+        this.setState({
+          sortedData: this._sort(this.props.data)
+        });
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this2 = this;
+
+        var dataSource = ds.cloneWithRows(this.state.sortedData);
+        return _react3.default.createElement(_reactNative.ListView, {
+          style: this.props.containerStyle,
+          dataSource: dataSource,
+          renderRow: function renderRow(data, someShit, i) {
+            return _this2._renderItem(data, i);
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 135
+          }
+        });
+      }
+    }]);
+
+    return Leaderboard;
+  }(_react2.Component), _class.propTypes = _extends({}, _reactNative.ViewPropTypes, {
+    data: _propTypes2.default.oneOfType([_propTypes2.default.array, _propTypes2.default.object]),
+    sortBy: _propTypes2.default.string.isRequired,
+    labelBy: _propTypes2.default.string.isRequired,
+    sort: _propTypes2.default.func,
+    icon: _propTypes2.default.string,
+    onRowPress: _propTypes2.default.func,
+    renderItem: _propTypes2.default.func,
+    containerStyle: _propTypes2.default.object,
+    scoreStyle: _propTypes2.default.object,
+    rankStyle: _propTypes2.default.object,
+    labelStyle: _propTypes2.default.object,
+    avatarStyle: _propTypes2.default.object,
+    oddRowColor: _propTypes2.default.string,
+    evenRowColor: _propTypes2.default.string
+  }), _temp2));
+
+  exports.default = Leaderboard;
+
+  var styles = _reactNative.StyleSheet.create({
+    row: {
+      paddingTop: 15,
+      paddingBottom: 15,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      borderWidth: 0.5,
+      borderRadius: 5,
+      borderColor: "#d6d7da"
+    },
+    left: {
+      flexDirection: "row",
+      alignItems: "center"
+    },
+    rank: {
+      fontSize: 17,
+      fontWeight: "bold",
+      marginRight: 5
+    },
+    singleDidget: {
+      paddingLeft: 16,
+      paddingRight: 6
+    },
+    doubleDidget: {
+      paddingLeft: 10,
+      paddingRight: 2
+    },
+    label: {
+      fontSize: 17,
+      flex: 1,
+      paddingRight: 80
+    },
+    score: {
+      fontSize: 20,
+      fontWeight: "bold",
+      position: "absolute",
+      right: 15,
+      paddingLeft: 15
+    },
+    avatar: {
+      height: 30,
+      width: 30,
+      borderRadius: 30 / 2,
+      marginRight: 10
+    }
+  });
+});

@@ -10,8 +10,7 @@ class Home extends Component {
                 <StatusBar hidden />
                 <View style={styles.playButtonsContainer}>
                 <TouchableOpacity
-
-onPress={() => this.props.navigation.navigate('Mode2')}
+                    onPress={() => this.props.navigation.navigate('Mode2')}
                     style={styles.ButtonStyles}
                 >
                 <View>
@@ -22,14 +21,19 @@ onPress={() => this.props.navigation.navigate('Mode2')}
                     onPress={() => this.props.navigation.navigate('Mode1')}
                     style={styles.ButtonStyles}
                 >
-                <View>
-                    <Text>✅❎</Text>
-                </View>
+                    <View>
+                        <Text>✅❎</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('QMLeaderboard')}
+                    style={styles.ButtonStyles}
+                >
+                    <View>
+                        <Text>Leaderboard</Text>
+                    </View>
                 </TouchableOpacity>
                 </View>
-                {/* <Button
-                    title='Leaderboard'
-                /> */}
             </View>
         );
     }

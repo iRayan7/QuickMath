@@ -1,12 +1,28 @@
 import React, { Component } from 'react';
-import { Text, View, StatusBar, TouchableOpacity, Image } from 'react-native';
+import { Text, View, StatusBar, TouchableOpacity, Image, AsyncStorage } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 
 class Mode1 extends Component {
-    state = { equation: '', solution: '', highScore: 0 }
+    state = { equation: '', solution: '', highScore: 0, score: 0 }
 
     componentDidMount() {
+        this.getHighScore();
         this.createEquation();
+    }
+
+    getHighScore = async () => {
+        try {
+            const value = await AsyncStorage.getItem('highScore');
+            if (value !== null){
+              // We have data!!
+              this.setState({highScore: value});
+            }else{
+                this.setState({highScore: 0});
+            }
+          } catch (error) {
+            this.setState({highScore: 0});
+
+        }
     }
     createEquation = () => {
         // Return a random number between 1 and 10:
@@ -42,9 +58,9 @@ class Mode1 extends Component {
         return
         (
             <View style={{ flex: 1 }} >
-                <Text style={styles.highScore}>{this.state.highScore}</Text>
-            </View>
+                <Text style={styles.highScore}> { 'score: ' + this.state.score} </Text>
 
+            </View>
         );
     }
     renderLabel = () => {
@@ -71,12 +87,20 @@ class Mode1 extends Component {
         );
     }
 
+    checkHighScore = async () => {
+        let highScore = this.state.highScore;
+        if(this.state.score > highScore ){
+           this.setState({highScore: this.state.score});
+           highScore = this.state.score;
+               AsyncStorage.setItem('highScore', highScore+'');
+        }
+    }
     falsePressed = () => {
         if (eval(this.state.equation) == this.state.solution) {
-            alert('false');
-            this.createEquation()
+            this.checkHighScore();
+            this.props.navigation.navigate('GameOver')
         } else {
-            this.state.highScore++;
+            this.state.score++;
             this.createEquation()
         }
     }
@@ -96,37 +120,37 @@ class Mode1 extends Component {
     }
     truePressed = () => {
         if (eval(this.state.equation) == this.state.solution) {
-            this.state.highScore++;
+            this.state.score++;
             this.createEquation()
         } else {
-            alert('false');
-            this.createEquation()
+            this.checkHighScore();
+            this.props.navigation.navigate('GameOver')
         }
     }
-
     render() {
         return (
             <View style={styles.containerStyles}>
-            <View style={{flex: 1}} />
+                <Text style={ styles.highScore}> { 'high Score: ' + this.state.highScore} </Text>
+                <View style={{flex: 1}} />
+                <Text style={styles.score}> { 'score: ' + this.state.score} </Text>
                 {this.renderLabel()}
                 <View style={{ flex: 2, flexDirection: 'row' }}>
-                    {this.renderTureButton()}
-                    {this.renderFalseButton()}
+                        {this.renderTureButton()}
+                        {this.renderFalseButton()}
                 </View>
-
             </View>
         );
     }
 }
 const styles = {
     containerStyles: {
-        flex: 5,
+        flex: 6,
         backgroundColor: '#F19D6C'
     },
     ButtonStyles: {
         alignItems: 'center',
         alignSelf: 'center',
-        marginTop: '75%',
+        marginTop: '50%',
         alignItems: 'center',
         justifyContent: 'center',
         width: 150,
@@ -140,7 +164,14 @@ const styles = {
         fontFamily: 'Avenir-Black'
     },
     highScore: {
-        fontSize: 25,
+        fontSize: 30,
+        textAlign: 'center',
+        color: 'white',
+        fontFamily: 'Avenir-Black',
+        marginTop: '10%'
+    },
+    score: {
+        fontSize: 30,
         textAlign: 'center',
         color: 'white',
         fontFamily: 'Avenir-Black'

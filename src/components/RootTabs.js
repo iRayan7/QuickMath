@@ -4,7 +4,8 @@ import { StackNavigator } from 'react-navigation';
 import Home from './Home';
 import Mode1 from './Mode1';
 import Mode2 from './Mode2';
-import Leaderboard from './Leaderboard';
+import QMLeaderboard from './QMLeaderboard';
+import GameOver from './GameOver';
 
 
 const MainStack = StackNavigator({
@@ -53,8 +54,23 @@ Mode2: {
   headerRight: (<View />) // To center the text, you have to put something fake in the header to shift the text on the right.
 }
 },
-Leaderboard: {
-  screen: Leaderboard,
+QMLeaderboard: {
+  screen: QMLeaderboard,
+  navigationOptions: {
+  header: null,
+  headerTitleStyle: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginTop: 0,
+    width: '100%',
+    marginRight: 0,
+    marginLeft: 0,
+  },
+  headerRight: (<View />) // To center the text, you have to put something fake in the header to shift the text on the right.
+}
+},
+GameOver: {
+  screen: GameOver,
   navigationOptions: {
   header: null,
   headerTitleStyle: {

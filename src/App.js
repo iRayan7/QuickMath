@@ -4,12 +4,10 @@ import MainStack from './components/RootTabs';
 
 
 export default class App extends Component {
-
-    render() {
-        // Root tabs is the navigator..
-        return (
-          <MainStack />
-        );
-      }
-
+  render() {
+    // Root tabs is the navigator..
+    return (
+      <MainStack/>
+    );
+  }
 }

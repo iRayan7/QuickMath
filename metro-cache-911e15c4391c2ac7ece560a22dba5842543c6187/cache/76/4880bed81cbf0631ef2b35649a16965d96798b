@@ -1,0 +1,422 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/Users/alobaili/Projects/QuickMath/src/components/Mode1.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _reactNativeElements = require(_dependencyMap[3], "react-native-elements");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Mode1: {
+            displayName: "Mode1"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/Users/alobaili/Projects/QuickMath/src/components/Mode1.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var Mode1 = _wrapComponent("Mode1")(function (_Component) {
+        _inherits(Mode1, _Component);
+
+        function Mode1() {
+            var _ref,
+                _this2 = this;
+
+            var _temp, _this, _ret;
+
+            _classCallCheck(this, Mode1);
+
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Mode1.__proto__ || Object.getPrototypeOf(Mode1)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+                equation: '',
+                solution: '',
+                highScore: 0,
+                score: 0
+            }, _this.getHighScore = function _callee() {
+                var value;
+                return regeneratorRuntime.async(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.prev = 0;
+                                _context.next = 3;
+                                return regeneratorRuntime.awrap(_reactNative.AsyncStorage.getItem('highScore'));
+
+                            case 3:
+                                value = _context.sent;
+
+                                if (value !== null) {
+                                    _this.setState({
+                                        highScore: value
+                                    });
+                                } else {
+                                    _this.setState({
+                                        highScore: 0
+                                    });
+                                }
+
+                                _context.next = 10;
+                                break;
+
+                            case 7:
+                                _context.prev = 7;
+                                _context.t0 = _context["catch"](0);
+
+                                _this.setState({
+                                    highScore: 0
+                                });
+
+                            case 10:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, null, _this2, [[0, 7]]);
+            }, _this.createEquation = function () {
+                var x = Math.floor(Math.random() * 10 + 1);
+                var y = Math.floor(Math.random() * 10 + 1);
+                var operator = Math.floor(Math.random() * 1 + 1);
+                var equation = '';
+
+                if (operator == 0) {
+                    equation = x + ' + ' + y;
+                } else {
+                    equation = x + ' - ' + y;
+                }
+
+                if (Math.round(Math.random()) == 0) {
+                    _this.setState({
+                        equation: equation,
+                        solution: eval(equation)
+                    });
+                } else {
+                    var solution = Math.floor(Math.random() * 10 + 1);
+
+                    _this.setState({
+                        equation: equation,
+                        solution: solution
+                    });
+                }
+            }, _this.renderHighScore = function () {
+                return;
+
+                _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: {
+                            flex: 1
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 60
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: styles.highScore,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 61
+                            }
+                        },
+                        " ",
+                        'score: ' + _this.state.score,
+                        " "
+                    )
+                );
+            }, _this.renderLabel = function () {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: {
+                            flex: 1
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 68
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: styles.label,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 69
+                            }
+                        },
+                        _this.state.equation
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: styles.label,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 70
+                            }
+                        },
+                        '= ' + _this.state.solution
+                    )
+                );
+            }, _this.renderFalseButton = function () {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: {
+                            flex: 1
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 77
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.TouchableOpacity,
+                        {
+                            onPress: function onPress() {
+                                return _this.falsePressed();
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 78
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.Image, {
+                            style: styles.ButtonStyles,
+                            source: require(_dependencyMap[4], './images/false.png'),
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 81
+                            }
+                        })
+                    )
+                );
+            }, _this.checkHighScore = function _callee2() {
+                var highScore;
+                return regeneratorRuntime.async(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                highScore = _this.state.highScore;
+
+                                if (_this.state.score > highScore) {
+                                    _this.setState({
+                                        highScore: _this.state.score
+                                    });
+
+                                    highScore = _this.state.score;
+
+                                    _reactNative.AsyncStorage.setItem('highScore', highScore + '');
+                                }
+
+                            case 2:
+                            case "end":
+                                return _context2.stop();
+                        }
+                    }
+                }, null, _this2);
+            }, _this.falsePressed = function () {
+                if (eval(_this.state.equation) == _this.state.solution) {
+                    _this.checkHighScore();
+
+                    _this.props.navigation.navigate('GameOver');
+                } else {
+                    _this.state.score++;
+
+                    _this.createEquation();
+                }
+            }, _this.renderTureButton = function () {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: {
+                            flex: 1
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 109
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.TouchableOpacity,
+                        {
+                            onPress: function onPress() {
+                                return _this.truePressed();
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 110
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.Image, {
+                            style: styles.ButtonStyles,
+                            source: require(_dependencyMap[5], './images/true.png'),
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 113
+                            }
+                        })
+                    )
+                );
+            }, _this.truePressed = function () {
+                if (eval(_this.state.equation) == _this.state.solution) {
+                    _this.state.score++;
+
+                    _this.createEquation();
+                } else {
+                    _this.checkHighScore();
+
+                    _this.props.navigation.navigate('GameOver');
+                }
+            }, _temp), _possibleConstructorReturn(_this, _ret);
+        }
+
+        _createClass(Mode1, [{
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                this.getHighScore();
+                this.createEquation();
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.containerStyles,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 132
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: styles.highScore,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 133
+                            }
+                        },
+                        " ",
+                        'high Score: ' + this.state.highScore,
+                        " "
+                    ),
+                    _react3.default.createElement(_reactNative.View, {
+                        style: {
+                            flex: 1
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 134
+                        }
+                    }),
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: styles.score,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 135
+                            }
+                        },
+                        " ",
+                        'score: ' + this.state.score,
+                        " "
+                    ),
+                    this.renderLabel(),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: {
+                                flex: 2,
+                                flexDirection: 'row'
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 137
+                            }
+                        },
+                        this.renderTureButton(),
+                        this.renderFalseButton()
+                    )
+                );
+            }
+        }]);
+
+        return Mode1;
+    }(_react2.Component));
+
+    var styles = {
+        containerStyles: {
+            flex: 6,
+            backgroundColor: '#F19D6C'
+        },
+        ButtonStyles: {
+            alignItems: 'center',
+            alignSelf: 'center',
+            marginTop: '50%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 150,
+            height: 150,
+            backgroundColor: '#F19D6C'
+        },
+        label: {
+            fontSize: 65,
+            textAlign: 'center',
+            color: 'white',
+            fontFamily: 'Avenir-Black'
+        },
+        highScore: {
+            fontSize: 30,
+            textAlign: 'center',
+            color: 'white',
+            fontFamily: 'Avenir-Black',
+            marginTop: '10%'
+        },
+        score: {
+            fontSize: 30,
+            textAlign: 'center',
+            color: 'white',
+            fontFamily: 'Avenir-Black'
+        }
+    };
+    exports.default = Mode1;
+});
