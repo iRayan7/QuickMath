@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { Text, View, StatusBar, TouchableOpacity, Image, AsyncStorage } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
+import TimerCountdown from 'react-native-timer-countdown'
 
 class Mode1 extends Component {
-    state = { equation: '', solution: '', highScore: 0, score: 0 }
+    state = { equation: '', solution: '', highScore: 0, score: 0, gameIsOver: false, timerCounter: 3000 }
 
     componentDidMount() {
         this.getHighScore();
         this.createEquation();
+    }
+
+    componentDidUpdate() {
+
     }
 
     getHighScore = async () => {
@@ -53,7 +58,32 @@ class Mode1 extends Component {
         }
 
     }
+    renderTimer = () => {
+         // if game is over, the user is already navigated to the next screen, so no need to render.
+        if(this.state.gameIsOver) 
+            return;
+       return (
+        <View style={styles.timerView} >
+            <TimerCountdown
+            initialSecondsRemaining={3000} // in ms
+            interval={1000} // ticks every 1 second
+            onTick={() =>  this.state.timerCounter = this.state.timerCounter - 1000 }
+            onTimeElapsed={() => this.onTimeElapsed()}
+            allowFontScaling={true}
+            style={styles.timer}
+            />
+        </View>);
+    }
 
+    onTimeElapsed = () => {
+        alert("GameOver");
+        this.goToGameOverScreen();
+    }
+
+    goToGameOverScreen = () => {
+        this.setState({timerCounter: 0, gameIsOver: true});
+        this.props.navigation.navigate('GameOver');
+    }
     renderHighScore = () => {
         return
         (
@@ -87,6 +117,7 @@ class Mode1 extends Component {
         );
     }
 
+
     checkHighScore = async () => {
         let highScore = this.state.highScore;
         if(this.state.score > highScore ){
@@ -98,7 +129,7 @@ class Mode1 extends Component {
     falsePressed = () => {
         if (eval(this.state.equation) == this.state.solution) {
             this.checkHighScore();
-            this.props.navigation.navigate('GameOver')
+            this.goToGameOverScreen();
         } else {
             this.state.score++;
             this.createEquation()
@@ -124,14 +155,14 @@ class Mode1 extends Component {
             this.createEquation()
         } else {
             this.checkHighScore();
-            this.props.navigation.navigate('GameOver')
+            this.goToGameOverScreen();
         }
     }
     render() {
         return (
             <View style={styles.containerStyles}>
                 <Text style={ styles.highScore}> { 'high Score: ' + this.state.highScore} </Text>
-                <View style={{flex: 1}} />
+                    {this.renderTimer(this.state.timerCounter)}
                 <Text style={styles.score}> { 'score: ' + this.state.score} </Text>
                 {this.renderLabel()}
                 <View style={{ flex: 2, flexDirection: 'row' }}>
@@ -175,6 +206,20 @@ const styles = {
         textAlign: 'center',
         color: 'white',
         fontFamily: 'Avenir-Black'
+    },
+    timerView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    timer: {
+        fontSize: 40,
+        textAlign: 'center',
+        fontFamily: 'Avenir-Black',
+        color: 'red',
+
+
     }
+
 }
 export default Mode1;
