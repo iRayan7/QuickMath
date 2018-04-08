@@ -72,6 +72,7 @@ QMLeaderboard: {
 GameOver: {
   screen: GameOver,
   navigationOptions: {
+  gesturesEnabled: false,
   header: null,
   headerTitleStyle: {
     textAlign: 'center',
