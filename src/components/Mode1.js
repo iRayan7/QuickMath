@@ -13,10 +13,10 @@ class Mode1 extends Component {
         const x = Math.floor((Math.random() * 10) + 1);
         const y = Math.floor((Math.random() * 10) + 1);
 
-        // now we will render an operator, if 0 => + , 1 => - 
+        // now we will render an operator, if 1 => + , 2 => - 
         const operator = Math.floor((Math.random() * 1) + 1);
         let equation = '';
-        if (operator == 0) {
+        if (operator == 1) {
             equation = x + ' + ' + y;
         } else {
             equation = x + ' - ' + y;

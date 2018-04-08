@@ -42,7 +42,6 @@ export default class Mode2 extends Component {
 }
 
 
-export default Mode2;
 
 const styles = {
     containerStyle: {
