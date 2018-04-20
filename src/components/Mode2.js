@@ -123,7 +123,7 @@ export default class Mode2 extends Component {
     }
 
     timeElapsed() {
-        alert("time has finished, your score is "+ this.state.scoregit);
+        alert("time has finished, your score is "+ this.state.score);
     }
 
     renderCountdown() {
