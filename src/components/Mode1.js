@@ -76,13 +76,13 @@ class Mode1 extends Component {
     }
 
     onTimeElapsed = () => {
-        alert("GameOver");
+        // alert("GameOver");
         this.goToGameOverScreen();
     }
 
     goToGameOverScreen = () => {
         this.setState({timerCounter: 0, gameIsOver: true});
-        this.props.navigation.navigate('GameOver',{highScore: this.state.highScore, score: this.state.score});
+        this.props.navigation.navigate('GameOver',{highScore: this.state.highScore, score: this.state.score,type:"Mode1"});
     }
     renderHighScore = () => {
         return

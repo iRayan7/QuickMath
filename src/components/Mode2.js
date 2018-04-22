@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, Modal, TouchableHighlight} from 'react-native';
 import {Button} from 'react-native-elements';
-import NumberButton from './common/NumberButton';
+import NumberButton from './NumberButton';
 import TimerCountdown from 'react-native-timer-countdown'
 export default class Mode2 extends Component {
 
@@ -32,14 +32,11 @@ export default class Mode2 extends Component {
 
     }
 
-
-
     clearAnswer() {
         this.setState({answerText: ''});
     }
 
     generateQuestion() {
-
 
         // generate random numbers
         let randomNumber1 = Math.floor(Math.random() * 9) + 2;
@@ -69,8 +66,6 @@ export default class Mode2 extends Component {
             questionText = randomNumber1 + ' - ' + randomNumber2;
         }
 
-
-
         this.setState({
            questionText: questionText,
             firstNumber: randomNumber1,
@@ -79,10 +74,6 @@ export default class Mode2 extends Component {
             answerText: '',
         });
 
-    }
-
-    setModalVisible(visible) {
-        this.setState({modalVisible: visible});
     }
 
     checkAnswer () {
@@ -105,7 +96,9 @@ export default class Mode2 extends Component {
                 console.log("curreNtAnswer.length = " + current.length);
                 console.log("correcttAnswer.length = " + correct.length);
                 if (current[i] != correct[i]) {
-                    alert("Wrong Answer, your score is "+this.state.score);
+                    // alert("Wrong Answer, your score is "+this.state.score);
+                    this.goToGameOverScreen()
+
                     // this.setState({score: 0});
                     // this.generateQuestion();
                 }
@@ -122,7 +115,12 @@ export default class Mode2 extends Component {
     }
 
     timeElapsed() {
-        alert("time has finished, your score is "+ this.state.scoregit);
+        // alert("time has finished, your score is "+ this.state.score);
+        this.goToGameOverScreen()
+    }
+
+    goToGameOverScreen = () => {
+        this.props.navigation.navigate('GameOver',{highScore: 14, score: this.state.score,type:"Mode2"});
     }
 
     renderCountdown() {

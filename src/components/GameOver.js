@@ -10,6 +10,13 @@ class GameOver extends Component {
         }
     }
 
+    navigateToMode = () => {
+        if(this.props.navigation.state.params.type == "Mode1")
+            this.props.navigation.navigate('Mode1')
+        else
+         this.props.navigation.navigate('Mode2')
+    }
+
     render(){
         return (
             <View style={styles.containerStyles}>
@@ -18,7 +25,7 @@ class GameOver extends Component {
                 <Text style={ styles.highScore }> { 'High Score: ' + this.props.navigation.state.params.highScore} </Text>
 
                 <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('Mode1')}
+                    onPress={() => this.navigateToMode()}
                     style={styles.ButtonStyles}
                 >
                     <View>
