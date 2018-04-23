@@ -18,7 +18,7 @@ class Home extends Component {
                 </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('Mode1')}
+                    onPress={() => this.props.navigation.navigate('Mode1', {refresh: false})}
                     style={styles.ButtonStyles}
                 >
                     <View>

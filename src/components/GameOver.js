@@ -11,10 +11,14 @@ class GameOver extends Component {
     }
 
     navigateToMode = () => {
-        if(this.props.navigation.state.params.type == "Mode1")
-            this.props.navigation.navigate('Mode1')
-        else
-         this.props.navigation.navigate('Mode2')
+        if(this.props.navigation.state.params.type == "Mode1"){
+            this.props.navigation.state.params.refresh()
+            this.props.navigation.goBack(null)
+        }
+        else if(this.props.navigation.state.params.type == "Mode2"){
+            this.props.navigation.state.params.refresh()
+            this.props.navigation.goBack(null)
+        }
     }
 
     render(){

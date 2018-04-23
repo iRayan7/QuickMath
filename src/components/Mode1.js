@@ -82,7 +82,7 @@ class Mode1 extends Component {
 
     goToGameOverScreen = () => {
         this.setState({timerCounter: 0, gameIsOver: true});
-        this.props.navigation.navigate('GameOver',{highScore: this.state.highScore, score: this.state.score,type:"Mode1"});
+        this.props.navigation.navigate('GameOver',{highScore: this.state.highScore, score: this.state.score,type:"Mode1",  refresh: this.refreshFunction});
     }
     renderHighScore = () => {
         return
@@ -92,6 +92,10 @@ class Mode1 extends Component {
 
             </View>
         );
+    }
+
+    refreshFunction = () => {
+        this.setState({gameIsOver: false, timerCounter: 3000, score: 0});
     }
     renderLabel = () => {
         return (
