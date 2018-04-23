@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import { Text, View, StatusBar, TouchableOpacity, Image, Icon } from 'react-native';
+import { TextInput, Text, View, StatusBar, TouchableOpacity, Image, Icon } from 'react-native';
 import { Button } from 'react-native-elements'
 
 class GameOver extends Component {
+
+    state = {name: '', isInputEditable: true}
 
     correctScoreIfZero(){
         if(this.props.navigation.state.params.score == null){
@@ -25,6 +27,13 @@ class GameOver extends Component {
         this.props.navigation.pop(2)
     }
 
+    //save name and disable textInput
+
+    saveName(){
+        this.setState({isInputEditable: false});
+        //this.state.name=this.state.username
+    }   
+
     render(){
         return (
             <View style={styles.containerStyles}>
@@ -37,7 +46,7 @@ class GameOver extends Component {
                     style={styles.ButtonStyles}
                 >
                     <View>
-                        <Text>Try Again</Text>
+                        <Text style={styles.buttonLabels}>Try Again</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -45,7 +54,22 @@ class GameOver extends Component {
                     style={styles.ButtonStyles}
                 >
                     <View>
-                        <Text>Main</Text>
+                        <Text style={styles.buttonLabels}>Main</Text>
+                    </View>
+                </TouchableOpacity>
+                <TextInput
+                 style={styles.buttonLabels}
+                  placeholder={'Enter Nickname'}
+                  editable={this.state.isInputEditable}
+                onChangeText={(name) => this.setState({name})} />
+                <TouchableOpacity
+                    onPress={() =>
+                        this.saveName()
+                    }
+                    style={styles.ButtonStyles}
+                >
+                    <View>
+                        <Text style={styles.buttonLabels}>Submit</Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -55,21 +79,32 @@ class GameOver extends Component {
 
 const styles = {
     containerStyles: {
-        flex: 5,
+        flex: 1,
         backgroundColor: '#F19D6C'
     },
     ButtonStyles: {
-        alignItems: 'center',
+        //alignItems: 'center',
         alignSelf: 'center',
-        //marginTop: '50%',
-        alignItems: 'center',
+        marginTop: 30,
+        //alignItems: 'center',
         justifyContent: 'center',
-        width: 150,
-        height: 150,
-        backgroundColor: '#F19D6C',
+        width: '90%',
+        height: 80,
+        backgroundColor: '#de7a59',
+        borderRadius: 0,
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0,
+        shadowRadius: 3,
     },
     label: {
+        //marginTop: 100,
         fontSize: 65,
+        textAlign: 'center',
+        color: 'white',
+        fontFamily: 'Avenir-Black'
+    },
+    buttonLabels: {
+        fontSize: 30,
         textAlign: 'center',
         color: 'white',
         fontFamily: 'Avenir-Black'
@@ -81,6 +116,7 @@ const styles = {
         fontFamily: 'Avenir-Black'
     },
     gameOver: {
+        marginTop: 100,
         fontSize: 60,
         textAlign: 'center',
         color: 'white',
