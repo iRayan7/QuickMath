@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { Text, View, StatusBar, TouchableOpacity, Image, Icon } from 'react-native';
 import { Button } from 'react-native-elements'
-
+import DeviceInfo from 'react-native-device-info';
+import axios from 'axios';
 class GameOver extends Component {
 
     correctScoreIfZero(){
@@ -25,7 +26,25 @@ class GameOver extends Component {
         this.props.navigation.pop(2)
     }
 
+    tempFunction(){
+        let name = 'ddd';
+        let device_uuid = DeviceInfo.getUniqueID();
+        let score = this.props.navigation.state.params.highScore;
+        
+        axios.post('http://10.131.193.20:8000/api/add', {
+            name: name,
+            device_uuid: device_uuid,
+            'score': score
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
     render(){
+
         return (
             <View style={styles.containerStyles}>
                 <Text style={ styles.gameOver }>Game Over</Text>
