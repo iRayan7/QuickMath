@@ -8,6 +8,7 @@ class Home extends Component {
 
             <View style={styles.containerStyles}>
                 <StatusBar hidden />
+                <Text style={styles.label}>Quick Math!</Text>
                 <View style={styles.playButtonsContainer}>
                 <TouchableOpacity
                     onPress={() => this.props.navigation.navigate('Mode2')}
@@ -45,6 +46,13 @@ const styles = {
         flex: 3,
         backgroundColor: '#F19D6C',
     },
+    label: {
+        marginTop: 100,
+        fontSize: 40,
+        textAlign: 'center',
+        color: 'white',
+        fontFamily: 'Avenir-Black'
+    },
     ButtonStyles: {
         alignItems: 'center',
         alignSelf: 'center',
@@ -56,7 +64,6 @@ const styles = {
         backgroundColor: '#fff',
         borderRadius: 100,
     },
-
     playButtonsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',

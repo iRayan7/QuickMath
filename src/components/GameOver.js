@@ -21,6 +21,10 @@ class GameOver extends Component {
         }
     }
 
+    navigateToHome = () => {
+        this.props.navigation.pop(2)
+    }
+
     render(){
         return (
             <View style={styles.containerStyles}>
@@ -36,6 +40,14 @@ class GameOver extends Component {
                         <Text>Try Again</Text>
                     </View>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => this.navigateToHome()}
+                    style={styles.ButtonStyles}
+                >
+                    <View>
+                        <Text>Main</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -49,7 +61,7 @@ const styles = {
     ButtonStyles: {
         alignItems: 'center',
         alignSelf: 'center',
-        marginTop: '50%',
+        //marginTop: '50%',
         alignItems: 'center',
         justifyContent: 'center',
         width: 150,
