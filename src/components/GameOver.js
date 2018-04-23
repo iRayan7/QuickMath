@@ -13,6 +13,13 @@ class GameOver extends Component {
         }
     }
 
+    componentDidMount() {
+        if(this.props.navigation.state.params.highScore <= this.props.navigation.state.params.score && this.state.isInputEditable){
+            this.state.isInputEditable = false
+            this.setState({isInputEditable: false});
+        }
+    }
+
     navigateToMode = () => {
         if(this.props.navigation.state.params.type == "Mode1"){
             this.props.navigation.state.params.refresh()
@@ -28,30 +35,27 @@ class GameOver extends Component {
         this.props.navigation.pop(2)
     }
 
-    tempFunction(){
-        let name = 'ddd';
-        let device_uuid = DeviceInfo.getUniqueID();
-        let score = this.props.navigation.state.params.highScore;
-        
+    saveName = () => {
+        this.setState({isInputEditable: false});
+
+        let name = this.state.name;
+        let device_uuid = 'ssss';
+
         axios.post('http://10.131.193.20:8000/api/add', {
             name: name,
             device_uuid: device_uuid,
-            'score': score
+            score: this.props.navigation.state.params.highScore,
+            type: this.props.navigation.state.params.type
           })
           .then(function (response) {
             console.log(response);
+            alert('Success!')
           })
           .catch(function (error) {
             console.log(error);
           });
     }
     //save name and disable textInput
-
-    saveName(){
-        this.setState({isInputEditable: false});
-        //this.state.name=this.state.username
-    }   
-
     render(){
 
         return (
